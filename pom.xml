@@ -5,7 +5,7 @@
 
     <groupId>com.github.plexpt</groupId>
     <artifactId>chatgpt</artifactId>
-    <version>4.3.0</version>
+    <version>4.4.0</version>
     <name>chatgpt</name>
     <description>ChatGPT4.0、 ChatGPT Java SDK.</description>
     <url>https://chat.plexpt.com</url>
@@ -58,7 +58,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.28</version>
+            <version>1.18.30</version>
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>
@@ -96,13 +96,13 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.8.23</version>
+            <version>5.8.26</version>
         </dependency>
 
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>2.0.43</version>
+            <version>2.0.50</version>
         </dependency>
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
