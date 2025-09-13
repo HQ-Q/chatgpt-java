@@ -39,14 +39,14 @@ SDK for OpenAI ChatGPT. If you find it helpful, please give it a star in the upp
 <dependency>
     <groupId>com.github.plexpt</groupId>
     <artifactId>chatgpt</artifactId>
-    <version>4.4.0</version>
+    <version>6.0.0</version>
 </dependency>
 ```
 
 #### gradle
 
 ```
-implementation group: 'com.github.plexpt', name: 'chatgpt', version: '4.4.0'
+implementation group: 'com.github.plexpt', name: 'chatgpt', version: '6.0.0'
 ```
 
 ### Quick Start
@@ -146,6 +146,17 @@ Refer to [SseStreamListener](https://chat.plexpt.com/src/main/java/com/plexpt/ch
 
 
 
+https://platform.openai.com/docs/changelog
+
+
+
+
 # Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=PlexPt/chatgpt-java&type=Date)](https://star-history.com/#PlexPt/chatgpt-java&Date)
+
+
+
+## ref
+
+StefanBratanov/jvm-openai

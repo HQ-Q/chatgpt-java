@@ -25,11 +25,10 @@ public class Message implements Serializable {
      * 目前支持三种角色参考官网，进行情景输入：https://platform.openai.com/docs/guides/chat/introduction
      */
     private String role;
-    private String content;
+    public Object content;
+
     private String name;
 
-    @JsonProperty("function_call")
-    private FunctionCallResult functionCall;
 
     @JsonProperty("tool_calls")
     private List<ToolCallResult> toolCalls;

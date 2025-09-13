@@ -6,51 +6,29 @@
 [English Doc](https://github.com/PlexPt/chatgpt-java/blob/main/README_en.md).
 
 
-OpenAI ChatGPT 的SDK。觉得不错请右上角Star
- 
+OpenAI ChatGPT SDK
 
-
-
-# 中文语料库
-
-[中文语料库 67万+问题，欢迎拿去炼丹](https://github.com/PlexPt/chatgpt-corpus)
-
-[GPT API 额度购买(微信)](https://work.weixin.qq.com/kfid/kfc6913bb4906e0e597)
-
-点击👇🏻传送链接，购买云服务器炼丹：
-
-- [**阿里云服务器特惠**](https://51015.cn/ss/3vpds)
-- [**【腾讯云】服务器，低至4.2元/月**](https://curl.qcloud.com/NiGEWRdn) 选择 GPU 云服务器
 
 # 功能特性
 
-|     功能      |   特性   |
-|:-----------:| :------: |
-|   GPT 3.5   |   支持   |
-|   GPT 4.0   |   支持   |
-|    函数调用     |   支持   |
-|    流式对话     |   支持   |
-|    阻塞式对话    |   支持   |
-|     前端      |    无    |
-|     上下文     |   支持   |
-|   计算Token   | [用jtokkit](https://github.com/knuddelsgmbh/jtokkit) |
-|   多KEY轮询    |   支持   |
-|     代理      |   支持   |
-|    反向代理     |   支持   |
-
-
-
- 
-
-![image](https://user-images.githubusercontent.com/15922823/206353660-47d99158-a664-4ade-b2f1-e2cc8ac68b74.png)
-
-![image](https://user-images.githubusercontent.com/15922823/206615422-23c5e587-d29a-4f04-8d0d-f8dd7c19da37.png)
-
+|     功能      | 特性  |
+|:-----------:|:---:|
+|   GPT 3.5   | 支持  |
+|   GPT 4.0   | 支持  |
+|   GPT 4o    | 支持  |
+| GPT 4o-mini | 支持  |
+|    函数调用     | 支持  |
+|    流式对话     | 支持  |
+|     上下文     | 支持  |
+|   计算Token   | 支持  |
+|   多KEY轮询    | 支持  |
+|     代理      | 支持  |
+|    反向代理     | 支持  |
 
 
 ## 使用指南
 
-你可能在找这个，参考Demo https://github.com/PlexPt/chatgpt-online-springboot
+参考Demo https://github.com/PlexPt/chatgpt-online-springboot
 
 最新版本 [![Maven Central](https://img.shields.io/maven-central/v/com.github.plexpt/chatgpt)](https://maven-badges.herokuapp.com/maven-central/com.github.plexpt/chatgpt)
 
@@ -59,13 +37,13 @@ maven
 <dependency>
     <groupId>com.github.plexpt</groupId>
     <artifactId>chatgpt</artifactId>
-    <version>4.4.0</version>
+    <version>6.0.0</version>
 </dependency>
 ```
 
 gradle
 ```
-implementation group: 'com.github.plexpt', name: 'chatgpt', version: '4.4.0'
+implementation group: 'com.github.plexpt', name: 'chatgpt', version: '6.0.0'
 ```
 
 
@@ -117,10 +95,36 @@ implementation group: 'com.github.plexpt', name: 'chatgpt', version: '4.4.0'
                 .temperature(0.9)
                 .build();
         ChatCompletionResponse response = chatGPT.chatCompletion(chatCompletion);
-        Message res = response.getChoices().get(0).getMessage();
-        System.out.println(res);
+        System.out.println(response.toPlainString());
 
 ```
+
+
+### 计算token数
+
+
+```java
+        Message system = Message.ofSystem("你现在是一个诗人，专门写七言绝句");
+        Message message = Message.of("写一段七言绝句诗，题目是：火锅！");
+
+        ChatCompletion chatCompletion1 = ChatCompletion.builder()
+        .model(ChatCompletion.Model.GPT_3_5_TURBO)
+        .messages(Arrays.asList(system, message))
+        .maxTokens(3000)
+        .temperature(0.9)
+        .build();
+        ChatCompletion chatCompletion2 = ChatCompletion.builder()
+        .model(ChatCompletion.Model.GPT4)
+        .messages(Arrays.asList(system, message))
+        .maxTokens(3000)
+        .temperature(0.9)
+        .build();
+
+        log.info("{} tokens: {}", chatCompletion1.getModel(), chatCompletion1.countTokens());
+        log.info("{} tokens: {}", chatCompletion2.getModel(), chatCompletion2.countTokens());
+
+```
+
 ### 函数调用（Function Call）
 
 ```java
@@ -300,40 +304,6 @@ chatGPT = ChatGPT.builder()
 
 参考  [ChatContextHolder.java](src/main/java/com/plexpt/chatgpt/util/ChatContextHolder.java) 
 
-
-
-# 常见问题
-
-|                              问                              |                              答                              |
-| :----------------------------------------------------------: | :----------------------------------------------------------: |
-|                         KEY从哪来？                          | 手动注册生成：openai.com(需要海外手机号)、或者成品独享帐号：[购买](https://fk.fq.mk/?code=YT0xJmI9Mg%3D%3D) |
-|                        哪些地区不能用                        | **以下国家IP不支持使用：中国(包含港澳台) 俄罗斯 乌克兰 阿富汗 白俄罗斯 委内瑞拉 伊朗 埃及!!** |
-|                         有封号风险吗                         |              使用代理有一定的风险。                  |
-|                  我是尊贵的Plus会员，能用吗                  |             PLUS是网页端，调用API没啥区别              |
-|                        GPT4.0 怎么用                         |          目前需要充值         |
-|                  api.openai.com ping不通？                   |                   禁ping，用curl测试连通性                   |
-|                          显示超时？                          |                        IP不好，换个IP                        |
-| 显示`Your access was terminated due to violation of our policies`... |                       你号没了，下一个                       |
-| 显示`That model is currently overloaded with other requests. You can retry your request` |                   模型过载，官方炸了，重试                   |
-|                      生成的图片不能用？                      |                   图片是它瞎编的，洗洗睡吧                   |
-|                          如何充值？                          |                   用国外信用卡，国内的不行                   |
-|                    没有国外信用卡怎么办？                    |         暂时没有特别好的办法待定               |
-|                         返回http 401                         |                     API 密钥写错了/没写                      |
-|                         返回http 429                         |            请求超速了，或者官方超载了。充钱可解决            |
-|                         返回http 500                         |                          服务器炸了                          |
-|                                                              |                                                              |
-
----
-
-
-
-
-
-### 注册教程
-
-https://juejin.cn/post/7173447848292253704
-
-https://mirror.xyz/boxchen.eth/9O9CSqyKDj4BKUIil7NC1Sa1LJM-3hsPqaeW_QjfFBc
 
 #### 另外请看看我的另一个项目 [ChatGPT中文使用指南](https://github.com/PlexPt/awesome-chatgpt-prompts-zh)
 
